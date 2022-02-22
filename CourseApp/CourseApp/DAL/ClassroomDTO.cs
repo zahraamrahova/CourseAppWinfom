@@ -37,7 +37,7 @@ namespace CourseApp.DAL
         {
             _conn.Open();
 
-            string q = @"SELECT * FROM Classrooms WHERE Classroom.Id = @crid";
+            string q = @"SELECT * FROM Classrooms WHERE Classrooms.Id = @crid";
             SqlCommand command = new SqlCommand(q, _conn);
             command.Parameters.AddWithValue("@crid", Id);
             SqlDataReader reader = command.ExecuteReader();
@@ -53,14 +53,14 @@ namespace CourseApp.DAL
             return classroom;
         }
 
-        public Boolean Create (Classroom cr)
+        public bool Create (Classroom cr)
         {
             _conn.Open();
 
-            string q = @"INSERT INTO Classrooms (Name, Capacity) VALUES (@crname, @crcapacity)";
+            string q = @"INSERT INTO Classrooms (Name, Capacity) VALUES (@name, @capacity)";
             SqlCommand command = new SqlCommand(q, _conn);
-            command.Parameters.AddWithValue("@crname", cr.Name);
-            command.Parameters.AddWithValue("@crcapacity", cr.Capacity);
+            command.Parameters.AddWithValue("@name", cr.Name);
+            command.Parameters.AddWithValue("@capacity", cr.Capacity);
             int rowAffected = command.ExecuteNonQuery();
             _conn.Close();
 
@@ -73,13 +73,43 @@ namespace CourseApp.DAL
          
         }
 
-        public void Update (Classroom classroom)
+        public bool Update (Classroom cr)
         {
+            _conn.Open();
 
+            string q = @"UPDATE Classrooms SET Name = @name, Capacity= @capacity WHERE Id = @Id";
+            SqlCommand command = new SqlCommand(q, _conn);
+            command.Parameters.AddWithValue("@name", cr.Name);
+            command.Parameters.AddWithValue("@capacity", cr.Capacity);
+            command.Parameters.AddWithValue("@Id", cr.Id);
+            int rowAffected = command.ExecuteNonQuery();
+            _conn.Close();
+
+            if (rowAffected > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        public void Delete (int Id)
+        public bool Delete (int Id)
         {
+            _conn.Open();
+
+            string q = @"DELETE FROM Classrooms WHERE Classrooms.Id=@crid";
+            SqlCommand command = new SqlCommand(q, _conn);
+            command.Parameters.AddWithValue("@crid", Id);
+            
+            int rowAffected = command.ExecuteNonQuery();
+            _conn.Close();
+
+            if (rowAffected > 0)
+            {
+                return true;
+            }
+
+            return false;
 
         }
 
