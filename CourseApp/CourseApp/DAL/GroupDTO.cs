@@ -53,7 +53,7 @@ namespace CourseApp.DAL
             {
                 group.Id = reader.GetInt32(0);
                 group.Name = reader.GetString(1);
-                group.Classroom.Name = reader.GetString(4);
+                group.ClassroomId = reader.GetInt32(2);
 
             }
             _conn.Close();
@@ -64,9 +64,10 @@ namespace CourseApp.DAL
         public bool Create (Group group)
         {
             _conn.Open();
-            string query = @"INSERT INTO GROUPS (name) VALUES (@name)";
+            string query = @"INSERT INTO GROUPS (name, classroomId) VALUES (@name, @cId)";
             SqlCommand command = new SqlCommand(query, _conn);
             command.Parameters.AddWithValue("@name", group.Name);
+            command.Parameters.AddWithValue("@cId", group.ClassroomId);
             int rowAffected = command.ExecuteNonQuery();
             _conn.Close();
 
@@ -81,7 +82,7 @@ namespace CourseApp.DAL
 
         public bool Update (Group group)
         {
-            _conn.Close();
+            _conn.Open();
             string query = @"UPDATE Groups SET Name = @name, ClassroomId= @cId WHERE Id = @Id";
             SqlCommand command = new SqlCommand(query, _conn);
             command.Parameters.AddWithValue("@name", group.Name);
@@ -97,6 +98,27 @@ namespace CourseApp.DAL
 
             return false;
 
+        }
+
+        public bool Delete (int Id)
+        {
+            _conn.Open();
+            string query = @"DELETE FROM Groups WHERE Groups.Id=@crid";
+            SqlCommand command = new SqlCommand(query, _conn);
+            command.Parameters.AddWithValue("@crid", Id);
+            int roweffected = command.ExecuteNonQuery();
+            _conn.Close();
+            if (roweffected>0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+
+            
         }
     }
 }

@@ -83,6 +83,7 @@ namespace CourseApp.Forms
             this.btnSaveandUpdate.TabIndex = 4;
             this.btnSaveandUpdate.Text = "Save";
             this.btnSaveandUpdate.UseVisualStyleBackColor = true;
+            this.btnSaveandUpdate.Click += new System.EventHandler(this.btnSaveandUpdate_Click);
             // 
             // btnDelete
             // 
@@ -92,6 +93,7 @@ namespace CourseApp.Forms
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // dgvGroup
             // 
@@ -110,6 +112,7 @@ namespace CourseApp.Forms
             this.dgvGroup.Name = "dgvGroup";
             this.dgvGroup.Size = new System.Drawing.Size(270, 293);
             this.dgvGroup.TabIndex = 6;
+            this.dgvGroup.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGroup_RowHeaderMouseDoubleClick);
             // 
             // Id
             // 

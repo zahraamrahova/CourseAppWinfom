@@ -53,6 +53,26 @@ namespace CourseApp.DAL
             return classroom;
         }
 
+        public Classroom GetWithName(string Name)
+        {
+            _conn.Open();
+
+            string q = @"SELECT * FROM Classrooms WHERE Classrooms.Name = @crname";
+            SqlCommand command = new SqlCommand(q, _conn);
+            command.Parameters.AddWithValue("@crname", Name);
+            SqlDataReader reader = command.ExecuteReader();
+            Classroom classroom = new Classroom();
+            while (reader.Read())
+            {
+                classroom.Id = reader.GetInt32(0);
+                classroom.Name = reader.GetString(1);
+                classroom.Capacity = reader.GetInt32(2);
+
+            }
+            _conn.Close();
+            return classroom;
+        }
+
         public bool Create (Classroom cr)
         {
             _conn.Open();
