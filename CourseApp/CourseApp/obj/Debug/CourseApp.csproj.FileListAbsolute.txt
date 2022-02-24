@@ -10,3 +10,4 @@ D:\Zahra Amrahova Programming Lesson\21.02.2022\CourseApp\CourseApp\obj\Debug\Co
 D:\Zahra Amrahova Programming Lesson\21.02.2022\CourseApp\CourseApp\obj\Debug\CourseApp.pdb
 D:\Zahra Amrahova Programming Lesson\21.02.2022\CourseApp\CourseApp\obj\Debug\CourseApp.Forms.ClassroomForm.resources
 D:\Zahra Amrahova Programming Lesson\21.02.2022\CourseApp\CourseApp\obj\Debug\CourseApp.Forms.GroupForm.resources
+D:\Zahra Amrahova Programming Lesson\21.02.2022\CourseApp\CourseApp\obj\Debug\CourseApp.Forms.StudentForm.resources

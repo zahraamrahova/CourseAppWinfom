@@ -51,5 +51,91 @@ namespace CourseApp.DAL
             _conn.Close();
             return students;
         }
+
+
+        public Student Get(int Id)
+        {
+            _conn.Open();
+            string query = @"SELECT * FROM Students WHERE Students.Id = @sid";
+            SqlCommand command = new SqlCommand(query, _conn);
+            command.Parameters.AddWithValue("@sid", Id);
+
+            SqlDataReader reader = command.ExecuteReader();
+            Student student = new Student();
+            while (reader.Read())
+            {
+                student.Id = reader.GetInt32(0);
+                student.Firstname = reader.GetString(1);
+                student.Lastname = reader.GetString(2);
+                student.Email = reader.GetString(3);
+                student.GroupId = reader.GetInt32(4);
+
+            }
+            _conn.Close();
+            return student;
+        }
+
+
+        public bool Create (Student student)
+        {
+            _conn.Open();
+
+            string query = @"INSERT INTO Students (firstname, lastname, email, groupId) VALUES (@firstname, @lastname, @email, @gId)";
+            SqlCommand command = new SqlCommand(query, _conn);
+            command.Parameters.AddWithValue("@firstname", student.Firstname);
+            command.Parameters.AddWithValue("@lastname", student.Lastname);
+            command.Parameters.AddWithValue("@email", student.Email);
+            command.Parameters.AddWithValue("@gId", student.GroupId);
+            int rowAffected = command.ExecuteNonQuery();
+            _conn.Close();
+
+            if (rowAffected > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        public bool Update (Student student)
+        {
+            _conn.Open();
+
+            string query = @"UPDATE Students SET firstname = @firstname,lastname = @lastname, email=@email, GroupId= @gId WHERE Id = @Id";
+            SqlCommand command = new SqlCommand(query, _conn);
+            command.Parameters.AddWithValue("@firstname", student.Firstname);
+            command.Parameters.AddWithValue("@lastname", student.Lastname);
+            command.Parameters.AddWithValue("@email", student.Email);
+            command.Parameters.AddWithValue("@gId", student.GroupId);
+            int rowAffected = command.ExecuteNonQuery();
+            _conn.Close();
+
+            if (rowAffected > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool Delete (int Id)
+        {
+            _conn.Open();
+            string query = @"DELETE FROM Students WHERE Students.Id=@sId";
+            SqlCommand command = new SqlCommand(query, _conn);
+            command.Parameters.AddWithValue("@sId", Id);
+            int roweffected = command.ExecuteNonQuery();
+            _conn.Close();
+            if (roweffected > 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
     }
 }

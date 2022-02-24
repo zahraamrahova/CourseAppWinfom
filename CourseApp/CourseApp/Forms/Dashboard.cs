@@ -48,5 +48,11 @@ namespace CourseApp.Forms
            GroupForm form = new GroupForm();
             form.ShowDialog();
         }
+
+        private void studentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StudentForm form = new StudentForm();
+            form.ShowDialog();
+        }
     }
 }

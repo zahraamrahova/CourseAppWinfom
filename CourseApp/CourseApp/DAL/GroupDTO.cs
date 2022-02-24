@@ -103,9 +103,9 @@ namespace CourseApp.DAL
         public bool Delete (int Id)
         {
             _conn.Open();
-            string query = @"DELETE FROM Groups WHERE Groups.Id=@crid";
+            string query = @"DELETE FROM Groups WHERE Groups.Id=@gid";
             SqlCommand command = new SqlCommand(query, _conn);
-            command.Parameters.AddWithValue("@crid", Id);
+            command.Parameters.AddWithValue("@gid", Id);
             int roweffected = command.ExecuteNonQuery();
             _conn.Close();
             if (roweffected>0)

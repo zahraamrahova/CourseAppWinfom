@@ -129,6 +129,8 @@ namespace CourseApp.Forms
             {
                 groupDTO.Delete(selectedGroup.Id);
                 FillGroups();
+                ClearControls();
+                btnSaveandUpdate.Text = "Save";
             }
         }
     }
