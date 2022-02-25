@@ -36,6 +36,11 @@ namespace CourseApp.Forms
             this.txtStudentEmail = new System.Windows.Forms.TextBox();
             this.lblStudentEmail = new System.Windows.Forms.Label();
             this.dgvStudentList = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClassroomName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxGroupName = new System.Windows.Forms.ComboBox();
             this.lblGroupName = new System.Windows.Forms.Label();
             this.lblClassroomName = new System.Windows.Forms.Label();
@@ -43,11 +48,6 @@ namespace CourseApp.Forms
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClassroomName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudentList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,6 +118,33 @@ namespace CourseApp.Forms
             this.dgvStudentList.Name = "dgvStudentList";
             this.dgvStudentList.Size = new System.Drawing.Size(442, 350);
             this.dgvStudentList.TabIndex = 6;
+            this.dgvStudentList.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvStudentList_RowHeaderMouseDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Firstname
+            // 
+            this.Firstname.HeaderText = "Student Firstname";
+            this.Firstname.Name = "Firstname";
+            // 
+            // Lastname
+            // 
+            this.Lastname.HeaderText = "Student Lastname";
+            this.Lastname.Name = "Lastname";
+            // 
+            // GroupName
+            // 
+            this.GroupName.HeaderText = "Group";
+            this.GroupName.Name = "GroupName";
+            // 
+            // ClassroomName
+            // 
+            this.ClassroomName.HeaderText = "Classroom";
+            this.ClassroomName.Name = "ClassroomName";
             // 
             // cbxGroupName
             // 
@@ -161,6 +188,7 @@ namespace CourseApp.Forms
             this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnUpdate
             // 
@@ -170,6 +198,8 @@ namespace CourseApp.Forms
             this.btnUpdate.TabIndex = 12;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -179,32 +209,7 @@ namespace CourseApp.Forms
             this.btnDelete.TabIndex = 13;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Firstname
-            // 
-            this.Firstname.HeaderText = "Student Firstname";
-            this.Firstname.Name = "Firstname";
-            // 
-            // Lastname
-            // 
-            this.Lastname.HeaderText = "Student Lastname";
-            this.Lastname.Name = "Lastname";
-            // 
-            // GroupName
-            // 
-            this.GroupName.HeaderText = "Group";
-            this.GroupName.Name = "GroupName";
-            // 
-            // ClassroomName
-            // 
-            this.ClassroomName.HeaderText = "Classroom";
-            this.ClassroomName.Name = "ClassroomName";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // StudentForm
             // 

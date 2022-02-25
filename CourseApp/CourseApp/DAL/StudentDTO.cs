@@ -102,7 +102,7 @@ namespace CourseApp.DAL
         {
             _conn.Open();
 
-            string query = @"UPDATE Students SET firstname = @firstname,lastname = @lastname, email=@email, GroupId= @gId WHERE Id = @Id";
+            string query = @"UPDATE Students SET Firstname = @firstname,Lastname = @lastname, Email=@email, GroupId= @gId WHERE Id = @Id";
             SqlCommand command = new SqlCommand(query, _conn);
             command.Parameters.AddWithValue("@firstname", student.Firstname);
             command.Parameters.AddWithValue("@lastname", student.Lastname);

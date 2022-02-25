@@ -60,6 +60,25 @@ namespace CourseApp.DAL
             return group;
         }
 
+        public Group GetWithName(string Name)
+        {
+            _conn.Open();
+
+            string q = @"SELECT * FROM Groups WHERE Groups.Name = @gname";
+            SqlCommand command = new SqlCommand(q, _conn);
+            command.Parameters.AddWithValue("@gname", Name);
+            SqlDataReader reader = command.ExecuteReader();
+            Group group = new Group();
+            while (reader.Read())
+            {
+                group.Id = reader.GetInt32(0);
+                group.Name = reader.GetString(1);
+                group.ClassroomId = reader.GetInt32(2);
+
+            }
+            _conn.Close();
+            return group;
+        }
 
         public bool Create (Group group)
         {
